@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>zendFramework2</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>net.sourceforge.phpeclipse.parserbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>net.sourceforge.phpeclipse.phpnature</nature>
+	</natures>
+	<variableList>
+		<variable>
+			<name>ZF2_PATH</name>
+			<value>file:/c:/MyWork/zendFramework2/vendor/zendframework/zendframework/library/Zend</value>
+		</variable>
+	</variableList>
+</projectDescription>
