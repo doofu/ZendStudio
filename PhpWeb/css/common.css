@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	background-image: url(../img/background.jpg);
+	background-repeat: no-repeat;
+	color: green;
+}
+
+input {
+	background-color: lightyellow;
+}
+
+li {
+	list-style-type: circle;
+}
+
+a {
+	text-decoration: none;
+	font-size: x-large;
+	line-height: 40px;
+}
+
+a:link {
+	color: dodgerblue;
+} 
+
+a:visited {
+	color: dodgerblue;
+}
+
+/* 注意:	a:hover 必须在a:link和 a:visited后，
+		a:active必须在a:hover后，按此顺序才能正常显示效果！*/
+a:hover {
+	color: red;
+}
+
+.div1 {
+	margin-top: 100px;
+	width: 1015px;
+	height: 410px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button {
+	border-top: #7b9ebd 1px solid; 
+	border-right: #7b9ebd 1px solid; 
+	border-left: #7b9ebd 1px solid; 
+	border-bottom: #7b9ebd 1px solid; 
+	margin-right: 10px;
+	/* 	padding-right: 2px; 
+	padding-left: 2px; 
+	padding-top: 2px; */
+	padding: 5px;
+	font-size: 12px; 
+	color: black; 
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#cecfde); 
+	cursor: hand; 
+} 
+
+

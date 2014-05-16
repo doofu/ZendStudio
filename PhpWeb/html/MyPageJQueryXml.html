@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<!-- meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT" -->
+<title>Insert title here</title>
+
+<script type="text/javascript" src="/PhpWeb/javascript/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	function checkUserByGet() {
+		//Get方式下，中文会产生乱码
+    	//解决中文乱码问题的方法1,页面端发出的数据作一次encodeURI，服务端使用new String(old.getBytes("iso8859-1"),"UTF-8");  
+    	//解决中文乱码问题的方法2,页面端发出的数据作两次encodeURI,服务端使用String name = URLDecoder.decode(old,"UTF-8");  
+    	var url = "/PhpWeb/php/getUser.php?username=" + encodeURI(encodeURI($("#username").val()));  
+//		var url = "/PhpWeb/php/getUser.php?username=" + $("#username").val(); 
+    	url = convertURL(url); 
+
+    	$.ajax({
+    		type:"get",			//请求方式
+    		url:url,			//发送请求地址
+			dataType:"xml",		// 返回数据为xml格式
+			data: {				//发送给数据库的数据
+			},
+			//请求成功后的回调函数
+			success:function(xml) {
+				// 取XML数据中的数据项
+				var age = $(xml).find("age").text();
+				var salary = $(xml).find("salary").text();
+				var phonenumber = $(xml).find("phonenumber").text();
+				var email = $(xml).find("email").text();
+				var password = $(xml).find("password").text();
+				
+				// 回填html中form相应的字段
+				$("#age").val(age);
+				$("#salary").val(salary);
+				$("#phonenumber").val(phonenumber);
+				$("#email").val(email);
+				$("#password").val(password);
+				$("#myres").html("");
+			}
+		});
+	}
+	
+	function getUserByPost() {
+		$.ajax({
+			type:"post",								// 请求方式
+			url:"/PhpWeb/php/getUser.php",		// 发送请求地址
+			dataType:"xml",								// 返回数据为xml格式
+			data: {										// 发送给数据库的数据
+				username:$("#username2").val()
+			},
+			//请求成功后的回调函数
+			success:function(xml) {
+				// 取XML数据中的数据项
+				var age = $(xml).find("age").text();
+				var salary = $(xml).find("salary").text();
+				var phonenumber = $(xml).find("phonenumber").text();
+				var email = $(xml).find("email").text();
+				var password = $(xml).find("password").text();
+				
+				// 回填html中form相应的字段
+				$("#age2").val(age);
+				$("#salary2").val(salary);
+				$("#phonenumber2").val(phonenumber);
+				$("#email2").val(email);
+				$("#password2").val(password);
+				$("#myres2").html("");
+			}
+		});
+	}  
+	
+	//给url地址增加时间蒫，难过浏览器，不读取缓存  
+	function convertURL(url) {  
+	    //获取时间戳  
+	    var timstamp = (new Date()).valueOf();  
+	    //将时间戳信息拼接到url上  
+	    if(url.indexOf("?") >=0) {  
+	        url = url + "&t=" + timstamp;  
+	    }else {  
+	        url = url + "?t=" + timstamp;  
+	    }  
+	    return url;  
+	}
+	
+	function addUserByPost() {
+		$.ajax({
+			type:"post",								//请求方式
+			url:"/PhpWeb/php/addUserByPost.php",		//发送请求地址
+			data: {										//发送给数据库的数据
+				username:$("#username").val(),
+				age:$("#age").val(),
+				salary:$("#salary").val(),
+				phonenumber:$("#phonenumber").val(),
+				email:$("#email").val(),
+				password:$("#password").val(),
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus) {
+				$("#myres").html(data);
+			}
+		});
+	}	
+	
+	function deleteUserByPost() {
+		$.ajax({
+			type:"post",									//请求方式
+			url:"/PhpWeb/php/deleteUserByPost.php",				//发送请求地址
+			data: {											//发送给数据库的数据
+				username:$("#username2").val()
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus) {
+				$("#myres2").html(data);
+			}
+		});
+	}
+
+	function modifyUserByPost() {
+		$.ajax({
+			type:"post",									//请求方式
+			url:"/PhpWeb/php/modifyUserByPost.php",		//发送请求地址
+			data: {											//发送给数据库的数据
+				username:$("#username2").val(),
+				age:$("#age2").val(),
+				salary:$("#salary2").val(),
+				phonenumber:$("#phonenumber2").val(),
+				email:$("#email2").val(),
+				password:$("#password2").val(),
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus) {
+				$("#myres2").html(data);
+			}
+		});
+	}	
+	
+</script>
+
+</head>
+<body>
+<div class=div1>
+	<form name="Sayhi" Method="Post" action="#">
+		<H2>JQuery PHP范例程序（返回数据格式为XML）</H2><br>
+		用户姓名：<input type='text' onkeyup="checkUserByGet();" name='username' id="username" size="30"> 
+		<input type="button" onclick="getUserByGet();" value="Get访问方式" class=button> 
+		<font color="red" size="2"><span id="myres" ></span></font><br>
+		<!-- div style="border-width: 0; color: red" type="text" id="myres"></div><br -->
+		<!-- input style="border-width: 0; color: red" type="text" id="myres" size=50><br -->
+		用户年龄：<input type="text" name="age" id="age"><br> 
+		用户薪水：<input type="text" name="salary" id="salary"><br> 
+		电话号码：<input type="text" name="phonenumber" id="phonenumber"><br> 
+		电子邮件：<input	type="text" name="email" id="email"><br>
+		用户密码：<input type="password" name="password" id="password"><br><br>
+		<input type="button" onclick="addUserByPost();" value="增加" class=button>
+		<!-- input type="submit" value="增加" class=button>  -->
+		<input type="reset" value="清除" class=button><br>
+		<br><br>
+	</form>
+	<form name="Sayhi" Method="Post" action="#">
+		用户姓名：<input type='text' onkeyup="getUserByPost();" name='username2' id="username2" size="30"> 
+		<input type="button" onclick="getUserByPost();" value="Post访问方式" class=button> 
+		<font color="red" size="2"><span id="myres2" ></span></font><br>
+		用户年龄：<input type="text" name="age2" id="age2"><br> 
+		用户薪水：<input type="text" name="salary2" id="salary2"><br> 
+		电话号码：<input type="text" name="phonenumber2" id="phonenumber2"><br> 
+		电子邮件：<input	type="text" name="email2" id="email2"><br>
+		用户密码：<input type="password" name="password2" id="password2"><br><br>
+		<input type="button" onclick="deleteUserByPost();" value="删除" class=button> 
+		<input type="button" onclick="modifyUserByPost();" value="修改" class=button>
+		<input type="reset" value="清除" class=button><br>
+		<!--input type="submit" value="按钮"> 
+		<input type="reset" value="清除"><br>  -->
+	</form>
+	<br><br>
+	<a href="../index.html">首页</a>
+</div>
+</body>
+</html>
