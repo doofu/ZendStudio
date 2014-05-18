@@ -73,8 +73,8 @@ class CoreLibPage {
 				break;
 			
 			case 'html' :
-//				$url = str_replace ( '?', $page, $this->parameter );
-				$url = str_replace ( '*', $page, $this->parameter );
+				$url = str_replace ( '?', $page, $this->parameter );
+//				$url = str_replace ( '*', $page, $this->parameter );
 				return '<a href="' . $url . '">' . $text . '</a>' . "\n";
 				break;
 			

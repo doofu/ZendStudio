@@ -18,13 +18,31 @@ echo '<body><div class=div1>';
 $params = array(
             'total_rows'=>100, #(必须)
             'method'    =>'html', #(必须)
-            'parameter' =>'/PhpWeb/php/CoreLibPage.Demo.php?p=*',  #(必须)
+            'parameter' =>'/PhpWeb/php/CoreLibPage.Demo.?.php',  #(必须)
             'now_page'  =>$_GET['p'],  #(必须)
             'list_rows' =>10, #(可选) 默认为15
 );
 $page = new CoreLibPage($params);
 echo  $page->show(1);
 #<a href="xxx.com/20-0-0-0-40-2.html">2</a>
+
+echo '<br/><br/>';
+
+###处理get方式分页的情况###
+# method 处理环境 设置为 get
+# parameter 为静态页面参数  xxx.com/20-0-0-0-40.html
+# ?问号的位置会自动替换为去向页码
+# now_page 当前页面(静态页面获取不到当前页面所以只有你传入)
+$params = array(
+'total_rows'=>100, #(必须)
+'method'    =>'get', #(必须)
+'parameter' =>'/PhpWeb/php/CoreLibPage.Demo.php',  #(必须)
+#'now_page'  =>4,  #(可选)
+'list_rows' =>10, #(可选) 默认为15
+);
+$page = new CoreLibPage($params);
+echo  $page->show(1);
+#<a href="xxx.com/20-0-0-0-40.html?p=2">2</a>
 
 echo '<br/><br/>';
 
