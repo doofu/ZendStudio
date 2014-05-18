@@ -1,5 +1,5 @@
 <?php
-include_once 'pdo/pdo_page.class.php';
+include_once 'pdo/PdoPage.Class.php';
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////example///////////////////////////////////////
@@ -40,7 +40,7 @@ $db_password = 'root';
 $db_name = 'test';
 $db_table = 'nametable';
 $db_table_field = array('name','age','salary','phonenumber','email','password');
-$page_size = 2;
+$page_size = 5;
 $link_num = 3;
 
 $page->set($db_driver,
@@ -107,6 +107,7 @@ echo '<br>';
 *数据的输出，输出方式可根据具体情况制定
 *$i:记录数(行)，$j:字段(列)
 */
+
 echo '<table>';
 for($i=0;$i<count($db_table_field);$i++){
 	echo '<td>';
@@ -114,7 +115,8 @@ for($i=0;$i<count($db_table_field);$i++){
 	echo '</td>';
 }
 
-for($i=0;$i<$page_size;$i++){
+//for($i=0;$i<$page_size;$i++){
+for($i=0;$i<count($page_data[7]);$i++){
 	echo '<tr>';
 	for($j=0;$j<count($db_table_field);$j++){
 		echo '<td>';
