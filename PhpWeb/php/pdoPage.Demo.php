@@ -1,5 +1,5 @@
 <?php
-include_once 'pdo/PdoPage.Class.php';
+include_once 'pdo/PdoPage.class.php';
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////example///////////////////////////////////////
@@ -83,6 +83,9 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 echo '<link rel="stylesheet" type="text/css" href="../css/common.css" />';
 echo '</head>';
 echo '<body><div class=div1>';
+echo '<H2>演示PDO<br>';
+echo '目录：php、php/pdo<br/>';
+echo '文件：pdoPage.Demo.php、PdoPage.class.php<br/><br/></H2>';
 
 echo '共有'.$page_data[0].'条记录';    //表中记录的总数
 echo '&nbsp;';

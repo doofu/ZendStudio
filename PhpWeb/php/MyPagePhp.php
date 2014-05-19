@@ -11,7 +11,9 @@
 <body>
 <div class=div1>
 	<form name="MyPagePhp" Method="Post" action="getUserFromForm.php">
-		<H2>PHP范例程序（返回数据通过Get方式传递）</H2><br>
+		<H2>PHP范例程序（返回数据通过Get方式传递）<br>
+		目录：php<br/>
+		文件：MyPagePhp.php、getUserFromForm.php<br/><br/></H2>
 		用户姓名：<input type='text' name='username' id="username" size="30" value=<?php if (!empty($_GET["res"])) echo $_GET['name'] ?>> 
 		<!-- input type="button" onclick="getUserByGet();" value="Get访问方式" class=button>  -->
 		<font color="red" size="2"><span id="myres" >

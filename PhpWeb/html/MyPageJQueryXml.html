@@ -3,12 +3,9 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
 <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-<!-- meta HTTP-EQUIV="pragma" CONTENT="no-cache">
-<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
-<meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT" -->
 <title>Insert title here</title>
+<script type="text/javascript" src="../javascript/jquery-1.11.0.min.js"></script>
 
-<script type="text/javascript" src="/PhpWeb/javascript/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 	function checkUserByGet() {
 		//Get方式下，中文会产生乱码
@@ -143,7 +140,9 @@
 <body>
 <div class=div1>
 	<form name="Sayhi" Method="Post" action="#">
-		<H2>JQuery PHP范例程序（返回数据格式为XML）</H2><br>
+		<H2>JQuery PHP范例程序（返回数据格式为XML）<br>
+		目录：html、php<br/>
+		文件：MyPageJQueryXml.html、getUser.php、addUserByPost.php、deleteUserByPost.php、modifyUserByPost.php<br/><br/></H2>
 		用户姓名：<input type='text' onkeyup="checkUserByGet();" name='username' id="username" size="30"> 
 		<input type="button" onclick="getUserByGet();" value="Get访问方式" class=button> 
 		<font color="red" size="2"><span id="myres" ></span></font><br>
