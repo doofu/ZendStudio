@@ -17,7 +17,7 @@ echo '文件：coreLibPage.Demo.php、CoreLibPage.class.php<br/><br/></H2>';
 # parameter 为静态页面参数  xxx.com/20-0-0-0-40-?.html 注意问号
 # ?问号的位置会自动替换为去向页码
 # now_page 当前页面(静态页面获取不到当前页面所以只有你传入)
-echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
+#echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
 echo '<div id="page">';
 $params = array(
             'total_rows'=>100, #(必须)
@@ -30,15 +30,16 @@ $page = new CoreLibPage($params);
 echo  $page->show(2);
 #<a href="xxx.com/20-0-0-0-40-2.html">2</a>
 echo '</div>';
-echo '</div>';
-
-echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
+#echo '</div>';
 
 ###处理get方式分页的情况###
 # method 处理环境 设置为 get
 # parameter 为静态页面参数  xxx.com/20-0-0-0-40.html
 # ?问号的位置会自动替换为去向页码
 # now_page 当前页面(静态页面获取不到当前页面所以只有你传入)
+#echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
+echo '<div class=.div1><br/><br/></div>';
+echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
 echo '<div id="page">';
 $params = array(
 'total_rows'=>100, #(必须)
@@ -53,13 +54,13 @@ echo  $page->show(1);
 echo '</div>';
 echo '</div>';
 
-echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
-
 ###处理ajax分页的情况###
 # method 处理环境 设置为 ajax
 # ajax_func_name ajax分页跳转页面的javascript方法
 # parameter    ajax_func_name后面的附带参数 默认为空
 # now_page 不到当前页面所以只有你传入
+echo '<div class=.div1><br/><br/></div>';
+echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
 echo '<div id="page">';
 $params = array(
             'total_rows'=>100,

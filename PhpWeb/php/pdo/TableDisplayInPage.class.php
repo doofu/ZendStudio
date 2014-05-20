@@ -17,7 +17,7 @@ include_once 'CoreLibPage.class.php';
  ** 完成时间: 2006-10-18
  ** Power By 刘胜蛟 (Email: liushengjiao@163.com/liushengjiao@gmail.com)
  **/
-class TableDisplayInPage extends CoreLibPage {
+class TableDisplayInPage { //extends CoreLibPage {
 /* 变量定义部分 begin */
 
     /* pdo数据源 */
@@ -135,7 +135,7 @@ class TableDisplayInPage extends CoreLibPage {
     /* 获取数据 begin */
     private function fetch_data(){
         if ($this->records) {
-        	$start_row = ($this->page->now_page-1) * $this->page->list_rows;
+        	$start_row = ($this->page->get_now_page()-1) * $this->page->get_list_rows();
         	$end_row = $this->page->list_rows;
             $sql = "select * from $this->db_table limit $start_row, $end_row"; // now_page、list_rows由CoreLibPage继承而来
             $stmt = $this->db->prepare($sql);
@@ -152,7 +152,6 @@ class TableDisplayInPage extends CoreLibPage {
                 $j++;
             }
             /* 获取数据 end */
-
             $this->page_data = $field_value;
         }
     }

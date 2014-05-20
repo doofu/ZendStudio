@@ -263,4 +263,12 @@ class CoreLibPage {
 		$return .= '</select>';
 		return $return;
 	}
+	
+	public function get_now_page() {
+		return $this->now_page;
+	}
+	
+	public function get_list_rows() {
+		return $this->list_rows;
+	}
 }

@@ -29,7 +29,7 @@ $params = array(
 	'method'    =>'get', #(必须)
 	'parameter' =>'/PhpWeb/php/TableDisplayInPage.Demo.php',  #(必须)
 	#'now_page'  =>4,  #(可选)
-	'list_rows' =>2, #(可选) 默认为15
+	'list_rows' =>3, #(可选) 默认为15
 );
 
 $page = new TableDisplayInPage();
@@ -54,12 +54,13 @@ for($i=0;$i<count($db_table_field);$i++){
 }
 
 // 取当前页的表数据
+unset($page_data);
 $page_data = $page->getData();
 
 // 显示当前页的表体
-for($i=0; $i < $params['list_rows']; $i++) {
+for($i=0; $i < count($page_data); $i++) {			// 行
 	echo '<tr>';
-	for($j=0;$j<count($db_table_field);$j++){
+	for($j=0;$j<count($db_table_field);$j++){		// 列
 		echo '<td>';
 		echo $page_data[$i][$j];
 		echo '</td>';
