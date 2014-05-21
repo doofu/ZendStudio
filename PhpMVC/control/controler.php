@@ -1,16 +1,15 @@
 <?php
-require_once '../model/PdoHelper.class.php';
+require_once '../model/NametableManage.class.php';
 require '../smarty/libs/Smarty.class.php';
 
 if (!empty($_GET['fn'])) {
 	$fn = $_GET['fn'];
 	try {
-		$pdoHelper = new PdoHelper('mysql', 'localhost', 'test', 'root', 'root');
+		$nametableManage = new NametableManage();
 
 		switch ($fn) {
 			case 'phpMySql':
-				$sql = "select * from nametable where name='".$_POST['username']."'";
-				$res = $pdoHelper->execDql($sql);
+				$res = $nametableManage->queryByName($_POST['username']);
 
  				$header = "Location: ../view/phpMySql.php?res='1'&name=".$res[0]['name']."&age=".$res[0]['age']."&salary=".$res[0]['salary'].
 					"&phonenumber=".$res[0]['phonenumber']."&email=".$res[0]['email']."&password=".$res[0]['password']; 
@@ -35,8 +34,7 @@ if (!empty($_GET['fn'])) {
 					$name = "";
 				}
 				
-				$sql = "select * from nametable where name='".$name."'";
-				$res = $pdoHelper->execDql($sql);
+				$res = $nametableManage->queryByName($name);
 				
 				if ($res) {
 					$age = $res[0]["age"];
@@ -73,7 +71,7 @@ if (!empty($_GET['fn'])) {
 	} catch (Exception $e) {
 		echo "数据库操作出错！\n";
 		echo iconv('GB2312', 'UTF-8', $e->getmessage());
-		$pdoHelper->rollBack();
+		$nametableManage->rollBack();
 	}
 
 	header("Location: error.html");
