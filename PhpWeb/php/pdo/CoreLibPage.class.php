@@ -21,7 +21,7 @@ class CoreLibPage {
 	protected $parameter = '';
 	protected $page_name; // 分页参数的名称
 	protected $ajax_func_name;
-	public $plus = 3; // 分页偏移量
+	public $plus = 4; // 分页偏移量
 	protected $url;
 	
 	/**

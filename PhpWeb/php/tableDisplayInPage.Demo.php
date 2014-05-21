@@ -29,7 +29,7 @@ $params = array(
 	'method'    =>'get', #(必须)
 	'parameter' =>'/PhpWeb/php/TableDisplayInPage.Demo.php',  #(必须)
 	#'now_page'  =>4,  #(可选)
-	'list_rows' =>3, #(可选) 默认为15
+	'list_rows' =>10, #(可选) 默认为15
 );
 
 $page = new TableDisplayInPage();

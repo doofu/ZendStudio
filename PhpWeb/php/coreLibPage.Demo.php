@@ -20,14 +20,15 @@ echo '文件：coreLibPage.Demo.php、CoreLibPage.class.php<br/><br/></H2>';
 #echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
 echo '<div id="page">';
 $params = array(
-            'total_rows'=>100, #(必须)
-            'method'    =>'html', #(必须)
-            'parameter' =>'/PhpWeb/php/CoreLibPage.Demo.?.php',  #(必须)
+            'total_rows'=>1000, #(必须)
+#            'method'    =>'html', #(必须)
+            'method'    =>'get', #(必须)
+			'parameter' =>'/PhpWeb/php/CoreLibPage.Demo.?.php',  #(必须)
             'now_page'  =>$_GET['p'],  #(必须)
             'list_rows' =>10, #(可选) 默认为15
 );
 $page = new CoreLibPage($params);
-echo  $page->show(2);
+echo  $page->show(1);
 #<a href="xxx.com/20-0-0-0-40-2.html">2</a>
 echo '</div>';
 #echo '</div>';
@@ -42,14 +43,14 @@ echo '<div class=.div1><br/><br/></div>';
 echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
 echo '<div id="page">';
 $params = array(
-'total_rows'=>100, #(必须)
+'total_rows'=>1000, #(必须)
 'method'    =>'get', #(必须)
 'parameter' =>'/PhpWeb/php/CoreLibPage.Demo.php',  #(必须)
 #'now_page'  =>4,  #(可选)
 'list_rows' =>10, #(可选) 默认为15
 );
 $page = new CoreLibPage($params);
-echo  $page->show(1);
+echo  $page->show(2);
 #<a href="xxx.com/20-0-0-0-40.html?p=2">2</a>
 echo '</div>';
 echo '</div>';
@@ -63,9 +64,10 @@ echo '<div class=.div1><br/><br/></div>';
 echo '<div style="width: 100%;display:block;margin:50px 0 50px 0;">';
 echo '<div id="page">';
 $params = array(
-            'total_rows'=>100,
-            'method'    =>'ajax',
-            'ajax_func_name' =>'goToPage',
+            'total_rows'=>1000,
+#            'method'    =>'ajax',
+            'method'    =>'get',
+			'ajax_func_name' =>'goToPage',
             'now_page'  =>1,
             #'parameter' =>"'jiong','username'",
 );
