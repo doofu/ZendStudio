@@ -10,7 +10,7 @@
 <form name="MVC" Method="Post" action="../control/controler.php?fn=phpMySqlUseSmarty">
 <H2>MVC PHP Smarty范例程序<br/>
 目录：view、control、model、smarty,templates,templates_c<br/>
-文件：[V]phpMySqlUseSmarty.tpl、[C]controler.php、[M]PdoHelper.class.php</H2><br>
+文件：[V]phpMySqlUseSmarty.tpl、[C]controler.php、[M]NametableManage.class.php、[M]PdoHelper.class.php</H2><br>
 用户姓名：<input type='text' name='username' id="username" size="30" value={$name}> 
 <!-- input type="button" onclick="getUserByGet();" value="Get访问方式" class=button>  -->
 <font color="red" size="2"><span id="myres" >{$name}的电话是:{$phonenumber}

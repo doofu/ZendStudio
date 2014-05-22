@@ -22,10 +22,38 @@ class NametableManage {
 	
 	public function queryByName($name) {
 		try {
-			$sql = "select * from nametable where name='".$name."'";
-			return $this->pdoHelper->execDql($sql);
+			return $this->pdoHelper->queryByKey('nametable', 'name', $name);
 		} catch (Exception $e) {
 			throw $e;
+		}
+	}
+	
+	public function addRecord($rec) {
+		try {
+			$ret = $this->pdoHelper->addRecord("nametable", $rec);
+			
+			echo ($ret > 0) ? $rec['name'].'增加成功！' : $rec['name'].'增加失败!';
+		} catch (Exception $e) {
+			echo $rec['name'].'增加失败！！';
+		}
+	}
+	
+	public function deleteByName($name) {
+		try {
+			$ret = $this->pdoHelper->deleteByKey('nametable', 'name', $name);
+			echo ($ret > 0) ? $name.'删除成功！' : $name.'删除失败!';
+		} catch (Exception $e) {
+			echo $name.'删除失败！！';
+		}
+	}
+	
+	public function modifyRecord($keyName, $keyValue, $rec) {
+		try {
+			$ret = $this->pdoHelper->modifyRecord("nametable", $keyName, $keyValue, $rec);
+			
+			echo $keyValue.'修改成功！';
+		} catch (Exception $e) {
+			echo $keyValue.'修改失败！！';
 		}
 	}
 }
