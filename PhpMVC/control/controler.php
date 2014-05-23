@@ -35,6 +35,10 @@ if (!empty($_GET['fn'])) {
 			case 'getPhonenumber':
 				fnGetPhonenumber();
 				exit();
+			
+			case 'getPagingData':
+				fnGetPagingDataXML();
+				exit();
 				
 			default:
 				header("Location: ../view/error.php?err=调用参数错");
@@ -228,3 +232,31 @@ function fnModifyUser() {
 		throw $e;
 	}
 }
+
+function fnGetPagingDataXML() {
+	try{
+		$nametableManage = new NametableManage();
+		$pageNow = $_GET['pageNow'];
+		$listRows = $_GET['listRows'];
+		$data = $nametableManage->getPagingData($pageNow,  $listRows);
+
+/* 		if (empty($data))
+			return ''; */
+		
+		$xml = "<users>";
+		foreach ($data as $rec) {
+			$xml .= "<user>";
+			$xml .= "<name>".$rec['name']."</name><age>".$rec['age']."</age><salary>".$rec['salary']."</salary><phonenumber>".$rec['phonenumber']."</phonenumber>";
+			$xml .= "<email>".$rec['email']."</email><password>".$rec['password']."</password>";
+			
+			$xml .= "</user>";
+			}
+		$xml .= "</users>";
+		echo $xml;
+	} catch (Exception $e){
+		throw $e;
+	}
+}
+
+
+

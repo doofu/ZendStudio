@@ -77,7 +77,7 @@ class PdoHelper {
 			$this->pdo->rollBack();
 	}
 	
-	public function getRecordsCount($tableName) {
+	public function getTotalRows($tableName) {
 		try {
 			$sql = "select count(*) from $tableName";
 			$res = $this->execDql($sql);
@@ -85,6 +85,16 @@ class PdoHelper {
 				return $res[0][0];
 			else
 				return 0;
+		} catch (Exception $e) {
+			throw($e);
+		}
+	}
+	
+	public function getPagingData($tablename, $start, $rows) {
+		try {
+			$sql = "select * from $tablename limit $start, $rows";
+			
+			return $this->execDql($sql);
 		} catch (Exception $e) {
 			throw($e);
 		}

@@ -20,6 +20,14 @@ class NametableManage {
 		$this->pdoHelper->rollBack();
 	}
 	
+	public function getTotalRows() {
+		return $this->pdoHelper->getTotalRows('nametable');
+	}
+	
+	public function getPagingData($start, $rows) {
+		return $this->pdoHelper->getPagingData('nametable', $start, $rows);
+	}
+	
 	public function queryByName($name) {
 		try {
 			return $this->pdoHelper->queryByKey('nametable', 'name', $name);
