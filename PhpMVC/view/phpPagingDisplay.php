@@ -41,7 +41,7 @@ for($i=0;$i<count($db_table_field);$i++){
 }
 
 // 取当前页的表数据
-$pagingData = $nametableManage->getPagingData(($pageNow -1) * $params['list_rows'], $params['list_rows']);
+$pagingData = $nametableManage->getPagingData($pageNow, $params['list_rows']);
 
 // 显示当前页的表体
 for($i=0; $i < count($pagingData); $i++) {			// 行

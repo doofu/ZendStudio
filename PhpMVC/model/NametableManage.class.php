@@ -24,8 +24,8 @@ class NametableManage {
 		return $this->pdoHelper->getTotalRows('nametable');
 	}
 	
-	public function getPagingData($start, $rows) {
-		return $this->pdoHelper->getPagingData('nametable', $start, $rows);
+	public function getPagingData($pageNow, $rows) {
+		return $this->pdoHelper->getPagingData('nametable', ($pageNow - 1) * $rows, $rows);
 	}
 	
 	public function queryByName($name) {

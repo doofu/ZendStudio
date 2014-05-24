@@ -1,5 +1,6 @@
 <?php
 require_once '../model/NametableManage.class.php';
+require_once '../model/PagingToolbar.class.php';
 require_once '../smarty/libs/Smarty.class.php';
 
 if (!empty($_GET['fn'])) {
@@ -38,6 +39,10 @@ if (!empty($_GET['fn'])) {
 			
 			case 'getPagingData':
 				fnGetPagingDataXML();
+				exit();
+				
+			case 'getPagingToolBar':
+				fnGetPagingToolBar();
 				exit();
 				
 			default:
@@ -236,8 +241,8 @@ function fnModifyUser() {
 function fnGetPagingDataXML() {
 	try{
 		$nametableManage = new NametableManage();
-		$pageNow = $_GET['pageNow'];
-		$listRows = $_GET['listRows'];
+		$pageNow = $_POST['pageNow'];
+		$listRows = $_POST['listRows'];
 		$data = $nametableManage->getPagingData($pageNow,  $listRows);
 
 /* 		if (empty($data))
@@ -252,10 +257,33 @@ function fnGetPagingDataXML() {
 			$xml .= "</user>";
 			}
 		$xml .= "</users>";
+
 		echo $xml;
 	} catch (Exception $e){
 		throw $e;
 	}
+}
+
+function fnGetPagingToolBar() {
+	$nametableManage = new NametableManage();
+	$totalRows = $nametableManage->getTotalRows();
+	
+	$pageNow = $_POST['pageNow'];
+	$listRows = $_POST['listRows'];
+	
+	// 初始化导航条对象
+	$params = array(
+			'total_rows'		=>$totalRows,		// 总行数
+			'method'    		=>'ajax',			// 导航方式：Ajax
+			'ajax_func_name'	=>'getPagingData',	// ajax的调用方法 getPagingData(当前页, 参数);
+			'now_page'  		=>$pageNow,
+			'parameter'			=>$listRows,
+			#'parameter'		=>"$pageNow,$totalRows",
+			'list_rows' 		=>$listRows,				// 每页显示的行数，默认为15
+	);
+	$page = new PagingToolbar($params);
+	
+	echo $page->show(1);
 }
 
 

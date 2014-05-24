@@ -1,14 +1,18 @@
-function getPagingData(pageNow, parameter) {
+﻿function getPagingData(pageNow, listRows) {
+	// 显示表格数据
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=getPagingData&pageNow=2&listRows=1", // 发送请求地址
+		url : "../control/controler.php?fn=getPagingData", // 发送请求地址
 		dataType : "xml", // 返回数据为xml格式
 		data : { // 发送给数据库的数据
-			username : $("#username2").val()
+			pageNow : pageNow,
+			listRows: listRows
 		},
 		// 请求成功后的回调函数
 		success : function(xml) {
-			$(xml).find("user").each(function(i){
+			i=0;
+			$(xml).find("users").find("user").each(function(){
+
 				var name=$(this).children("name").text();
 				var age=$(this).children("age").text();
 				var salary=$(this).children("salary").text();
@@ -17,13 +21,49 @@ function getPagingData(pageNow, parameter) {
 				var password=$(this).children("password").text();
 				
 				// 回填html中form相应的字段
-				$("#data1_0").html(name);
-				$("#data1_1").html(age);
-				$("#data1_2").html(salary);
-				$("#data1_3").html(phonenumber);
-				$("#data1_4").html(email);
-				$("#data1_5").html(password);		
+				eval("$('#data"+i+"_0').html(name)");
+				eval("$('#data"+i+"_1').html(age)");
+				eval("$('#data"+i+"_2').html(salary)");
+				eval("$('#data"+i+"_3').html(phonenumber)");
+				eval("$('#data"+i+"_4').html(email)");
+				eval("$('#data"+i+"_5').html(password)");
+
+				i = i + 1;
 			});
+			
+			while (i < listRows) {
+				eval("$('#data"+i+"_0').html('')");
+				eval("$('#data"+i+"_1').html('')");
+				eval("$('#data"+i+"_2').html('')");
+				eval("$('#data"+i+"_3').html('')");
+				eval("$('#data"+i+"_4').html('')");
+				eval("$('#data"+i+"_5').html('')");
+				
+				i = i + 1;
+			}
 		}
 	});
+
+	// 显示导航条
+	$.ajax({
+		type : "post", // 请求方式
+		url : "../control/controler.php?fn=getPagingToolBar", // 发送请求地址
+		dataType : "html", // 返回数据为html格式
+		data : { // 发送给数据库的数据
+//			totalRows: totalRows,
+			pageNow : pageNow,
+			listRows: listRows
+		},
+		// 请求成功后的回调函数
+		success : function(pagingBar) {
+			$('#pagingToolbar').html(pagingBar);
+		}
+	});
+}
+
+function afterLoad(pageNow, parameter){   
+	var s = document.readyState;    
+	if(s=="complete"){
+		getPagingData(pageNow, parameter);
+	}
 }
