@@ -1,4 +1,5 @@
-﻿function getPagingData(pageNow, listRows) {
+﻿// 分页显示数据
+function getPagingData(pageNow, listRows, totalRows) {
 	// 显示表格数据
 	$.ajax({
 		type : "post", // 请求方式
@@ -43,14 +44,19 @@
 			}
 		}
 	});
+	
+	// 显示分页工具条
+	showPagingToolbar(pageNow, listRows, totalRows);
+}
 
-	// 显示导航条
+// 显示分页工具条
+function showPagingToolbar(pageNow, listRows, totalRows){  
 	$.ajax({
 		type : "post", // 请求方式
 		url : "../control/controler.php?fn=getPagingToolBar", // 发送请求地址
 		dataType : "html", // 返回数据为html格式
 		data : { // 发送给数据库的数据
-//			totalRows: totalRows,
+			totalRows: totalRows,
 			pageNow : pageNow,
 			listRows: listRows
 		},
@@ -61,9 +67,10 @@
 	});
 }
 
-function afterLoad(pageNow, parameter){   
+// 第一次刷新页面时，显示分页数据
+function afterLoad(pageNow, listRows, totalRows){   
 	var s = document.readyState;    
 	if(s=="complete"){
-		getPagingData(pageNow, parameter);
+		getPagingData(pageNow, listRows, totalRows);
 	}
 }

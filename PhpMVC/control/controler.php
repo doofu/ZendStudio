@@ -265,9 +265,7 @@ function fnGetPagingDataXML() {
 }
 
 function fnGetPagingToolBar() {
-	$nametableManage = new NametableManage();
-	$totalRows = $nametableManage->getTotalRows();
-	
+	$totalRows = $_POST['totalRows'];
 	$pageNow = $_POST['pageNow'];
 	$listRows = $_POST['listRows'];
 	
@@ -277,8 +275,8 @@ function fnGetPagingToolBar() {
 			'method'    		=>'ajax',			// 导航方式：Ajax
 			'ajax_func_name'	=>'getPagingData',	// ajax的调用方法 getPagingData(当前页, 参数);
 			'now_page'  		=>$pageNow,
-			'parameter'			=>$listRows,
-			#'parameter'		=>"$pageNow,$totalRows",
+			#'parameter'			=>$listRows,
+			'parameter'			=>"$listRows,$totalRows",
 			'list_rows' 		=>$listRows,				// 每页显示的行数，默认为15
 	);
 	$page = new PagingToolbar($params);

@@ -1,9 +1,12 @@
 <?php
 
-require_once '../model/PagingToolbar.class.php';
 require_once '../model/NametableManage.class.php';
 
-$listRow = 4;
+// 每页显示的行数
+$listRows = 4;
+// 得到数据总条数
+$nametableManage = new NametableManage();
+$totalRows = $nametableManage->getTotalRows();
 
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
 echo '<html>';
@@ -13,29 +16,30 @@ echo '<link rel="stylesheet" type="text/css" href="../css/common.css" />';
 echo '<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>';
 echo '<script type="text/javascript" src="../js/phpPagingDisplayJQuery.js"></script>';
 echo '</head>';
-echo '<body onload="afterLoad(1, '.$listRow.');"><div class=div1>';
+echo '<body onload="afterLoad(1, '.$listRows.','.$totalRows.');"><div class=div1>';
 echo '<H2>演示数据库表分页演示 JQuery<br>';
-echo '目录：view、model<br/>';
-echo '文件：[V]phpPagingDisplay.php、[M]PagingToolbar.class.php、[M]PdoHelper.class.php<br/><br/></H2>';
+echo '目录：view、control、model<br/>';
+echo '文件：[V]phpPagingDisplayJQuery.php、[V]phpPagingDisplayJQuery.js、[C]controler.php、[M]PagingToolbar.class.php、[M]PdoHelper.class.php<br/><br/></H2>';
 
 echo '<div id="page">';
 
 // 开始按表格显示数据
+echo '<table>';
+
 // 显示表头
 $db_table_field = array('姓名', '年龄', '薪水', '电话', '电子邮件', '密码');
-echo '<table>';
-for($i=0;$i<count($db_table_field);$i++){
-	echo '<th>';
-	echo $db_table_field[$i];
-	echo '</th>';
-}
+echo '<th width=25%>'.$db_table_field[0].'</th>';
+echo '<th width=10%>'.$db_table_field[1].'</th>';
+echo '<th width=10%>'.$db_table_field[2].'</th>';
+echo '<th width=20%>'.$db_table_field[3].'</th>';
+echo '<th width=20%>'.$db_table_field[4].'</th>';
+echo '<th>'.$db_table_field[5].'</th>';
 
 // 显示当前页的表体
-for($i=0; $i < $listRow; $i++) {			// 行
+for($i=0; $i < $listRows; $i++) {			// 行
 	echo '<tr>';
 	for($j=0;$j<count($db_table_field);$j++){		// 列
 		echo '<td>';
-#		echo $pagingData[$i][$j];
 		echo '<span id='.'"data'.$i.'_'.$j.'"></span></td>';
 	}
 	echo '</tr>';
@@ -43,7 +47,7 @@ for($i=0; $i < $listRow; $i++) {			// 行
 echo '</table>';
 
 echo "<span id=pagingToolbar>";
-// 此处有Ajax显示导航条
+// 此处由Ajax显示分页导航条
 echo "</span>";
 
 echo '</div>';
