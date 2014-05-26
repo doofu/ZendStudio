@@ -72,14 +72,15 @@ a:hover {
 	padding-top: 2px; */
 	padding: 5px;
 	font-size: 12px; 
-	color: black; 
+	color: black;
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#cecfde); 
 	cursor: hand; 
 }
 
 /* 分页显示的样式 */
 #pagingToolbar {
-	font:12px/16px arial}
+	font:12px/16px arial;
+	color:#666;
 }
 
 #pagingToolbar span {
@@ -87,7 +88,47 @@ a:hover {
 	margin:0px 3px;
 }
 
+#pagingToolbar .messagePage {
+	font:12px arial;
+	
+	float: left;	
+}
+
+#pagingToolbar .gotoPageSelect {
+	font:12px arial;
+	
+	float: left;
+	margin-left: 12px 10px;
+	padding: 1px;
+	border:1px solid #ddd;
+}
+
+#pagingToolbar .gotoPageInput {
+	font:12px arial;
+	
+	float: left;
+	border: 1px solid #ddd;
+	margin-left: 20px;
+	padding: 2px;
+ 	width: 40px;
+	background-color: white;
+}
+
+#pagingToolbar .gotoButton {
+	float: left;
+	font:12px/16px arial;
+	margin:0 3px;
+	border:1px solid #ddd;
+	padding:3px 7px; 
+	text-decoration:none;
+	/* 此处设置页码的颜色和字体大小 */
+	background-color: white;
+	color:#666;
+	cursor: hand;
+}
+
 #pagingToolbar a {
+	font:12px/16px arial;
 	float:left;
 	margin:0 3px;
 	border:1px solid #ddd;
@@ -95,10 +136,12 @@ a:hover {
 	text-decoration:none;
 	/* 此处设置页码的颜色和字体大小 */
 	color:#666;
-	font:12px/16px arial;
 }
 
 #pagingToolbar a.now_page, #page a:hover {
 	color:#fff;background:#05c}
 }
+
+
+
 

@@ -281,7 +281,7 @@ function fnGetPagingToolBar() {
 	);
 	$page = new PagingToolbar($params);
 	
-	echo $page->show(1);
+	echo $page->show(4);
 }
 
 

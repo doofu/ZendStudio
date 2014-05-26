@@ -163,11 +163,59 @@ class PagingToolbar {
 		}
 		return '';
 	}
+	
+	/**
+	 * 输入页面，直接跳转控件
+	 * @return string
+	 */
+	public function goto_page($name = 'Go') {
+		$return = '<form><input type="text" value="' . $this->now_page . '" id="gotoPage" size="3" class="gotoPageInput">';
+		$return .= '<input type="button" onclick="' . $this->ajax_func_name . '(gotoPage.value' . ',' . $this->list_rows . ',' . $this->total_rows. ')" value="'.$name.'" class="gotoButton"></form>';
+
+		return $return;
+	}
+	
+	/**
+	 * 页面选择控件
+	 * @return string
+	 */
+	public function select_page() {
+		if ($this->plus + $this->now_page > $this->total_pages) {
+			$begin = $this->total_pages - $this->plus * 2;
+		} else {
+			$begin = $this->now_page - $this->plus;
+		}
+		$begin = ($begin >= 1) ? $begin : 1;
+		
+		$return = '<select onchange="' . $this->ajax_func_name . '(this.value'.','.$this->list_rows.','.$this->total_rows.')" class="gotoPageSelect">';
+		
+		for($i = $begin; $i <= $begin + 10; $i ++) {
+			if ($i > $this->total_pages) {
+				break;
+			}
+			if ($i == $this->now_page) {
+				$return .= '<option selected="true" value="' . $i . '">' . $i . '</option>';
+			} else {
+				$return .= '<option value="' . $i . '">' . $i . '</option>';
+			}
+		}
+		$return .= '</select>';
+		
+		return $return;
+	}
+	
+	public function message_page() {
+		$return = '<span class="messagePage">总计' . $this->total_rows . '条' . $this->total_pages . '页';
+		$return .= ',每页' . $this->list_rows . '条, 当前第' . $this->now_page . '页</span>';
+//		$return .= '<input type="text" value="' . $this->list_rows . '" id="pageSize" size="3"> ';
+
+		return $return;
+	}
+	
 	/**
 	 * 分页样式输出
 	 * 
-	 * @param
-	 *        	$param
+	 * @param	$param
 	 * @return string
 	 */
 	public function show($param = 1) {
@@ -183,6 +231,7 @@ class PagingToolbar {
 		}
 		return '';
 	}
+	
 	protected function show_2() {
 		if ($this->total_pages != 1) {
 			$return = '';
@@ -207,6 +256,7 @@ class PagingToolbar {
 			return $return;
 		}
 	}
+	
 	protected function show_1() {
 		$plus = $this->plus;
 		if ($plus + $this->now_page > $this->total_pages) {
@@ -235,33 +285,28 @@ class PagingToolbar {
 	}
 		
 	protected function show_3() {
-		$plus = $this->plus;
-		if ($plus + $this->now_page > $this->total_pages) {
-			$begin = $this->total_pages - $plus * 2;
-		} else {
-			$begin = $this->now_page - $plus;
-		}
-		$begin = ($begin >= 1) ? $begin : 1;
-		$return = '总计 ' . $this->total_rows . ' 个记录分为 ' . $this->total_pages . ' 页, 当前第 ' . $this->now_page . ' 页 ';
-		$return .= ',每页 ';
-		$return .= '<input type="text" value="' . $this->list_rows . '" id="pageSize" size="3"> ';
+		$return = $this->message_page();
+		
 		$return .= $this->first_page () . "\n";
 		$return .= $this->up_page () . "\n";
 		$return .= $this->down_page () . "\n";
 		$return .= $this->last_page () . "\n";
-		$return .= '<select onchange="' . $this->ajax_func_name . '(this.value)" id="gotoPage">';
+
+		$return .= $this->select_page();
 		
-		for($i = $begin; $i <= $begin + 10; $i ++) {
-			if ($i > $this->total_pages) {
-				break;
-			}
-			if ($i == $this->now_page) {
-				$return .= '<option selected="true" value="' . $i . '">' . $i . '</option>';
-			} else {
-				$return .= '<option value="' . $i . '">' . $i . '</option>';
-			}
-		}
-		$return .= '</select>';
+		return $return;
+	}
+	
+	protected function show_4() {
+		// 显示方法一的控件
+		$return = $this->show_1();
+		// 显示选择控件		
+		$return .= $this->select_page();
+		// 显示页面跳转控件
+		$return .= $this->goto_page();
+		
+		$return .= $this->message_page();
+		
 		return $return;
 	}
 }

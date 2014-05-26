@@ -1,5 +1,9 @@
 ﻿// 分页显示数据
 function getPagingData(pageNow, listRows, totalRows) {
+	// 如果当前页超出最后一页，设为最后一页
+	if ((pageNow -1) * listRows > totalRows)
+		pageNow = Math.floor(totalRows / listRows) + 1;
+	
 	// 显示表格数据
 	$.ajax({
 		type : "post", // 请求方式
