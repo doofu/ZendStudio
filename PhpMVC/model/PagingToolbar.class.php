@@ -233,6 +233,7 @@ class PagingToolbar {
 		$return .= $this->last_page ();
 		return $return;
 	}
+		
 	protected function show_3() {
 		$plus = $this->plus;
 		if ($plus + $this->now_page > $this->total_pages) {
@@ -262,13 +263,5 @@ class PagingToolbar {
 		}
 		$return .= '</select>';
 		return $return;
-	}
-	
-	public function get_now_page() {
-		return $this->now_page;
-	}
-	
-	public function get_list_rows() {
-		return $this->list_rows;
 	}
 }

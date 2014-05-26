@@ -3,7 +3,7 @@
 require_once '../model/NametableManage.class.php';
 
 // 每页显示的行数
-$listRows = 4;
+$listRows = 10;
 // 得到数据总条数
 $nametableManage = new NametableManage();
 $totalRows = $nametableManage->getTotalRows();
@@ -20,8 +20,6 @@ echo '<body onload="afterLoad(1, '.$listRows.','.$totalRows.');"><div class=div1
 echo '<H2>演示数据库表分页演示 JQuery<br>';
 echo '目录：view、control、model<br/>';
 echo '文件：[V]phpPagingDisplayJQuery.php、[V]phpPagingDisplayJQuery.js、[C]controler.php、[M]PagingToolbar.class.php、[M]PdoHelper.class.php<br/><br/></H2>';
-
-echo '<div id="page">';
 
 // 开始按表格显示数据
 echo '<table>';
@@ -45,14 +43,11 @@ for($i=0; $i < $listRows; $i++) {			// 行
 	echo '</tr>';
 }
 echo '</table>';
-
-echo "<span id=pagingToolbar>";
+echo '<div id="pagingToolbar">';
 // 此处由Ajax显示分页导航条
-echo "</span>";
-
 echo '</div>';
-echo '<div class=.div1><br/><br/></div>';
-echo '<div class=.div1><br/><br/></div>';
+
+echo '<div><br/><br/></div>';
 echo '<a href="../index.html">首页</a>';
 
 echo '</div></body>';

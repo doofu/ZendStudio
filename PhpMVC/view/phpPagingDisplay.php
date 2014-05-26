@@ -13,7 +13,7 @@ echo '<H2>演示数据库表分页演示<br>';
 echo '目录：view、model<br/>';
 echo '文件：[V]phpPagingDisplay.php、[M]PagingToolbar.class.php、[M]PdoHelper.class.php<br/><br/></H2>';
 
-echo '<div id="page">';
+
 
 // 初始化数据对象
 $nametableManage = new NametableManage();
@@ -55,12 +55,12 @@ for($i=0; $i < count($pagingData); $i++) {			// 行
 }
 echo '</table>';
 
+echo '<div id="pagingToolbar">';
 // 以方式一显示导航条
 echo  $page->show(1);
-
 echo '</div>';
-echo '<div class=.div1><br/><br/></div>';
-echo '<div class=.div1><br/><br/></div>';
+
+echo '<div><br/><br/></div>';
 echo '<a href="../index.html">首页</a>';
 
 echo '</div></body>';

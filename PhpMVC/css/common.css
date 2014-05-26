@@ -15,6 +15,7 @@ body {
 table{
 	border-collapse: collapse;
 	width: 1000px;
+	color: black;
 }
 
 td{
@@ -77,25 +78,27 @@ a:hover {
 }
 
 /* 分页显示的样式 */
-#page {
+#pagingToolbar {
 	font:12px/16px arial}
 }
 
-#page span {
+#pagingToolbar span {
 	float:left;
 	margin:0px 3px;
 }
 
-#page a {
+#pagingToolbar a {
 	float:left;
 	margin:0 3px;
 	border:1px solid #ddd;
 	padding:3px 7px; 
 	text-decoration:none;
-	color:#666
+	/* 此处设置页码的颜色和字体大小 */
+	color:#666;
+	font:12px/16px arial;
 }
 
-#page a.now_page, #page a:hover {
+#pagingToolbar a.now_page, #page a:hover {
 	color:#fff;background:#05c}
 }
 

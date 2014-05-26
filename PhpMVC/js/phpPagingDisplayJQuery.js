@@ -63,6 +63,7 @@ function showPagingToolbar(pageNow, listRows, totalRows){
 		// 请求成功后的回调函数
 		success : function(pagingBar) {
 			$('#pagingToolbar').html(pagingBar);
+//			$('#page').html(pagingBar);
 		}
 	});
 }
