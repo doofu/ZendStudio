@@ -12,13 +12,13 @@ body {
 	color: green;
 }
 
-table{
+table {
 	border-collapse: collapse;
 	width: 1000px;
 	color: black;
 }
 
-td{
+td, th {
 background: #ffc;
 border: solid 1px #f90;
 height: 22px;
@@ -77,7 +77,7 @@ a:hover {
 	cursor: hand; 
 }
 
-/* 分页显示的样式 */
+/* 分页显示的样式 begin */
 #pagingToolbar {
 	font:12px/16px arial;
 	color:#666;
@@ -89,59 +89,68 @@ a:hover {
 }
 
 #pagingToolbar .messagePage {
-	font:12px arial;
+	font:12px/24px arial;
 	
 	float: left;	
 }
 
+/* 选择页面控件样式 */
 #pagingToolbar .gotoPageSelect {
-	font:12px arial;
+	font: 12px arial;
+	color: #666;
+	height:24px;
+	border:1px solid #ddd;
 	
 	float: left;
-	margin-left: 12px 10px;
-	padding: 1px;
-	border:1px solid #ddd;
+	margin-left: 12px;
+	padding: 0px;
 }
 
+/* 跳转页输入框样式 */
 #pagingToolbar .gotoPageInput {
-	font:12px arial;
-	
-	float: left;
+	font: 12px/20px arial;
+	color: #666;
+	background-color: white;
+	width: 40px;
+	height: 22px;
 	border: 1px solid #ddd;
-	margin-left: 20px;
-	padding: 2px;
- 	width: 40px;
-	background-color: white;
-}
 
-#pagingToolbar .gotoButton {
 	float: left;
-	font:12px/16px arial;
-	margin:0 3px;
-	border:1px solid #ddd;
-	padding:3px 7px; 
-	text-decoration:none;
-	/* 此处设置页码的颜色和字体大小 */
+	margin-left: 20px;
+    padding: 0px;
+}
+
+/* 跳转按钮控件样式 */
+#pagingToolbar .gotoButton {
+	font: 12px/16px arial;
+	color: #666;
 	background-color: white;
-	color:#666;
+	border: 1px solid #ddd;
 	cursor: hand;
-}
 
-#pagingToolbar a {
-	font:12px/16px arial;
-	float:left;
+	float: left;
 	margin:0 3px;
-	border:1px solid #ddd;
-	padding:3px 7px; 
-	text-decoration:none;
+	padding: 3px 7px; 
+}
+
+/* 页码样式 */
+#pagingToolbar a {
 	/* 此处设置页码的颜色和字体大小 */
-	color:#666;
+	font: 12px/16px arial;
+	color: #666;
+	text-decoration: none;
+	border: 1px solid #ddd;
+
+	float: left;
+	margin: 0 3px;
+	padding: 3px 7px; 
 }
 
-#pagingToolbar a.now_page, #page a:hover {
-	color:#fff;background:#05c}
+#pagingToolbar a.now_page, #pagingToolbar a:hover {
+	color: #fff;
+	background: #05c;
 }
-
+/* 分页显示的样式 end */
 
 
 

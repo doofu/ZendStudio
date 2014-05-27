@@ -240,14 +240,15 @@ function fnModifyUser() {
 
 function fnGetPagingDataXML() {
 	try{
-		$nametableManage = new NametableManage();
 		$pageNow = $_POST['pageNow'];
 		$listRows = $_POST['listRows'];
+		$nametableManage = new NametableManage();
 		$data = $nametableManage->getPagingData($pageNow,  $listRows);
 
 /* 		if (empty($data))
 			return ''; */
 		
+		// 以XML格式返回查询到的数据
 		$xml = "<users>";
 		foreach ($data as $rec) {
 			$xml .= "<user>";
@@ -275,7 +276,6 @@ function fnGetPagingToolBar() {
 			'method'    		=>'ajax',			// 导航方式：Ajax
 			'ajax_func_name'	=>'getPagingData',	// ajax的调用方法 getPagingData(当前页, 参数);
 			'now_page'  		=>$pageNow,
-			#'parameter'			=>$listRows,
 			'parameter'			=>"$listRows,$totalRows",
 			'list_rows' 		=>$listRows,				// 每页显示的行数，默认为15
 	);

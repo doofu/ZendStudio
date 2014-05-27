@@ -1,27 +1,28 @@
 <?php
 /**
  * 分页类
- * @author  xiaojiong & 290747680@qq.com
- * @date 2011-08-17
+ * @author  根据网上代码修改而成
+ * @date 2014-5-27
  *
  * show(2)  1 ... 62 63 64 65 66 67 68 ... 150
- * 分页样式
+ * 分页样式（参见common.css）
  * #page{font:12px/16px arial}
  * #page span{float:left;margin:0px 3px;}
  * #page a{float:left;margin:0 3px;border:1px solid #ddd;padding:3px 7px; text-decoration:none;color:#666}
  * #page a.now_page,#page a:hover{color:#fff;background:#05c}
 */
 class PagingToolbar {
-	public $first_row; // 起始行数
-	public $list_rows; // 列表每页显示行数
-	protected $total_pages; // 总页数
-	protected $total_rows; // 总行数
-	protected $now_page; // 当前页数
-	protected $method = 'defalut'; // 处理情况 Ajax分页 Html分页(静态化时) 普通get方式
-	protected $parameter = '';
-	protected $page_name; // 分页参数的名称
-	protected $ajax_func_name;
-	public $plus = 4; // 分页偏移量
+	public $first_row; 				// 起始行数
+	public $list_rows; 				// 列表每页显示行数
+	protected $total_pages; 		// 总页数
+	protected $total_rows; 			// 总行数
+	protected $now_page; 			// 当前页数
+	protected $method = 'defalut'; 	// 处理情况 Ajax分页 Html分页(静态化时) 普通get方式
+	protected $page_name; 			// 分页参数的名称，缺省为'p'
+	protected $ajax_func_name;		// 使用Ajax或JQuery时，调用的javascript函数的名称
+	protected $parameter = '';		// javascript函数的参数格式为'参数1,参数2,...,参数n'，
+									// 自动调用javascript函数：ajax_func_name(当前页, 参数1, 参数2, ..., 参数n);
+	public $plus = 4; 				// 分页偏移量
 	protected $url;
 	
 	/**
@@ -56,10 +57,8 @@ class PagingToolbar {
 	/**
 	 * 得到当前连接
 	 * 
-	 * @param
-	 *        	$page
-	 * @param
-	 *        	$text
+	 * @param	$page
+	 * @param	$text
 	 * @return string
 	 */
 	protected function _get_link($page, $text) {
@@ -129,8 +128,7 @@ class PagingToolbar {
 	/**
 	 * 最后一页
 	 * 
-	 * @param
-	 *        	$name
+	 * @param	$name
 	 * @return string
 	 */
 	public function last_page($name = '最后一页') {
@@ -204,6 +202,10 @@ class PagingToolbar {
 		return $return;
 	}
 	
+	/**
+	 * 统计信息显示控件
+	 * @return string
+	 */
 	public function message_page() {
 		$return = '<span class="messagePage">总计' . $this->total_rows . '条' . $this->total_pages . '页';
 		$return .= ',每页' . $this->list_rows . '条, 当前第' . $this->now_page . '页</span>';

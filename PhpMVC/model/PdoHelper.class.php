@@ -4,23 +4,23 @@
  * 2014年5月20日
  */
 class PdoHelper {
-	private $pdo;					// PDO对象
+	private $pdo;			// PDO对象
 	
-	private $dbDriver;
-	private $dbHost;
-	private $dbChar;
-	private $dbName;
-	private $dbUser;
-	private $dbPassword;
+	private $dbDriver;		// 数据库驱动
+	private $dbHost;		// 数据库主机地址
+	private $dbChar;		// 数据库使用的字符集
+	private $dbName;		// 数据库名
+	private $dbUser;		// 数据库用户名称
+	private $dbPassword;	// 数据库用户密码
 
 	/**
 	 * 构造函数：完成数据连接
-	 * @param 字符串 $dbDriver		// 数据库驱动
-	 * @param 字符串 $dbHost			// 数据库主机地址
-	 * @param 字符串 $dbName			// 数据库名
-	 * @param 字符串 $dbUser			// 数据库用户名称
-	 * @param 字符串 $dbPassword		// 数据库用户密码
-	 * @param 字符串g $dbChar		// 数据库使用的字符集
+	 * @param 字符串 $dbDriver		数据库驱动
+	 * @param 字符串 $dbHost			数据库主机地址
+	 * @param 字符串 $dbName			数据库名
+	 * @param 字符串 $dbUser			数据库用户名称
+	 * @param 字符串 $dbPassword		数据库用户密码
+	 * @param 字符串 $dbChar			数据库使用的字符集
 	 */
 	public function __construct(
 			$dbDriver,
@@ -39,7 +39,9 @@ class PdoHelper {
 		$this->connectDb();
 	}
 	
-	/* 连接数据库 */
+	/**
+	 *  连接数据库 
+	 */
 	private function connectDB(){
 		try{
 			$this->pdo = new PDO(
@@ -59,24 +61,41 @@ class PdoHelper {
 	 * 事务开始
 	 */
 	public function beginTransaction() {
-		$this->pdo->beginTransaction();
+		try {
+			$this->pdo->beginTransaction();
+		} catch (Exception $e) {
+			throw($e);
+		}		
 	}
 	
 	/**
 	 * 事务提交
 	 */
 	public function commit() {
-		$this->pdo->commit();
+		try {
+			$this->pdo->commit();
+		} catch (Exception $e) {
+			throw($e);
+		}
 	}
 	
 	/**
 	 * 事务回滚
 	 */
 	public function rollBack() {
-		if ($this->pdo->inTransaction())
-			$this->pdo->rollBack();
+		try {
+			if ($this->pdo->inTransaction())
+				$this->pdo->rollBack();
+		} catch (Exception $e) {
+			throw($e);
+		}	
 	}
 	
+	/**
+	 * 取总记录数
+	 * @param 字符串 $tableName	数据库表名
+	 * @return 整数				数据库表中总记录数
+	 */
 	public function getTotalRows($tableName) {
 		try {
 			$sql = "select count(*) from $tableName";
@@ -90,6 +109,13 @@ class PdoHelper {
 		}
 	}
 	
+	/**
+	 * 去数据库表中的一部分数据
+	 * @param 字符串 $tablename	数据库表名
+	 * @param 整数	$start		起始记录数
+	 * @param 整数	$rows		准备取记录的条数
+	 * @return 二维数组，存放有查询到的数据；失败抛出异常，有调用者处理
+	 */
 	public function getPagingData($tablename, $start, $rows) {
 		try {
 			$sql = "select * from $tablename limit $start, $rows";
