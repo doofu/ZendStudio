@@ -9,8 +9,12 @@ if (!empty($_GET['fn'])) {
 		$nametableManage = new NametableManage();
 
 		switch ($fn) {
+			case 'login':
+				fnLogin();
+				exit();
+				
 			case 'phpMySql':
-				fnPhpMySql($nametableManage);
+				fnPhpMySql();
 				exit();
 				
 			case 'phpMySqlUseSmarty':
@@ -61,6 +65,38 @@ if (!empty($_GET['fn'])) {
 	}
 
 	header("Location: ../view/error.php?err=调用参数错");
+	exit();
+}
+
+function fnLogin() {
+	session_start();
+	if ($_POST['checkNum'] != $_SESSION['checkNum']) {
+		header("Location: ../view/login.php?err=1");
+		exit();
+	}
+	
+	if (empty($_POST['username'])) {
+		header("Location: ../view/login.php?err=2");
+		exit();
+	}
+	
+	$nametableManage = new NametableManage();
+	$rec = $nametableManage->queryByName($_POST['username']);
+	
+	if (empty($rec)) {
+		header("Location: ../view/login.php?err=3");
+		exit();
+	}
+
+	if ($rec[0]['password'] != $_POST['password']) {
+		header("Location: ../view/login.php?err=4");
+		exit();
+	}
+	
+	session_start();
+	// 保存用户名到session中
+	$_SESSION['username'] = $_POST['username'];
+	header("Location: ../index.html?username=".$_SESSION['username']);
 	exit();
 }
 

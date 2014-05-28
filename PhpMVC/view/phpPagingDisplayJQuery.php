@@ -7,6 +7,11 @@ $listRows = 10;
 // 得到数据总条数
 $nametableManage = new NametableManage();
 $totalRows = $nametableManage->getTotalRows();
+session_start();
+if (empty($_SESSION['username'])) {
+	header("Location: ../view/login.php");
+	exit();
+}
 
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
 echo '<html>';
@@ -17,7 +22,7 @@ echo '<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>'
 echo '<script type="text/javascript" src="../js/phpPagingDisplayJQuery.js"></script>';
 echo '</head>';
 echo '<body onload="afterLoad(1, '.$listRows.','.$totalRows.');"><div class=div1>';
-echo '<H2>演示数据库表分页演示 JQuery<br>';
+echo '<H2>用户【' . $_SESSION['username'] . '】演示数据库表分页演示 JQuery<br>';
 echo '目录：view、control、model<br/>';
 echo '文件：[V]phpPagingDisplayJQuery.php、[V]phpPagingDisplayJQuery.js、[C]controler.php、[M]PagingToolbar.class.php、[M]PdoHelper.class.php<br/><br/></H2>';
 
