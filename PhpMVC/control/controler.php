@@ -71,12 +71,12 @@ if (!empty($_GET['fn'])) {
 function fnLogin() {
 	session_start();
 	if ($_POST['checkNum'] != $_SESSION['checkNum']) {
-		header("Location: ../view/login.php?err=1");
+		header("Location: ../view/login.html?err=1");
 		exit();
 	}
 	
 	if (empty($_POST['username'])) {
-		header("Location: ../view/login.php?err=2");
+		header("Location: ../view/login.html?err=2");
 		exit();
 	}
 	
@@ -84,12 +84,12 @@ function fnLogin() {
 	$rec = $nametableManage->queryByName($_POST['username']);
 	
 	if (empty($rec)) {
-		header("Location: ../view/login.php?err=3");
+		header("Location: ../view/login.html?err=3");
 		exit();
 	}
 
 	if ($rec[0]['password'] != $_POST['password']) {
-		header("Location: ../view/login.php?err=4");
+		header("Location: ../view/login.html?err=4");
 		exit();
 	}
 	

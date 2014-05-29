@@ -4,8 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="../css/login.css" />
 <title>用户登陆</title>
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/login.js"></script>
 </head>
-<body>
+<body onload="errMessage()">
 <div id="divLogin">
 <form Method="Post" action="../control/controler.php?fn=login">
 <table>
@@ -16,31 +18,7 @@
 <input type="reset" value="重填" class="inputButton" /></td><tr>
 </table>
 </form>
-<?php 
-	if (!empty($_GET['err'])) {
-		switch ($_GET['err']) {
-			case '1':
-				echo "<span style='color:white;background-color:red'>验证码不对</span>";
-				break;
-				
-			case '2':
-				echo "<span style='color:white;background-color:red'>用户名为空</span>";
-				break;
-				
-			case '3':
-				echo "<span style='color:white;background-color:red'>用户不存在</span>";
-				break;
-				;
-			case '4':
-				echo "<span style='color:white;background-color:red'>密码错</span>";
-				break;
-				
-			default:
-				break;
-		}
-	}
-?>
+<span style='color:white;background-color:red' id='errMessage'></span>
 </div>
-
 </body>
 </html>

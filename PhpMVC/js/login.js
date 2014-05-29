@@ -1,0 +1,44 @@
+function errMessage() {
+	var queryString = window.top.location.search.substring(1); 
+
+	switch (getParameter(queryString, 'err')) {
+		case '1':
+			$("#errMessage").html("验证码不对");
+			break;
+		case '2':
+			$("#errMessage").html("用户名为空");
+			break;
+		case '3':
+			$("#errMessage").html("用户不存在");
+			break;
+		case '4':
+			$("#errMessage").html("密码错");
+			break;
+	}
+} 
+
+function getParameter(queryString, parameterName) {  
+	// Add "=" to the parameter name (i.e. parameterName=value)  
+	var parameterName = parameterName + "=";  
+
+	if (queryString.length > 0) {  
+		// Find the beginning of the string  
+		begin = queryString.indexOf(parameterName);  
+		// If the parameter name is not found, skip it, otherwise return the value  
+		if (begin != -1) {  
+			// Add the length (integer) to the beginning  
+			begin += parameterName.length;  
+			// Multiple parameters are separated by the "&" sign  
+			end = queryString.indexOf("&", begin);  
+			if (end == -1) {  
+				end = queryString.length  
+			}  
+
+			// Return the string  
+            return unescape(queryString.substring(begin, end));  
+		}
+	}  
+
+    // Return "null" if no parameter has been found  
+    return "null";  
+} 
