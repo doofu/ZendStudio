@@ -11,9 +11,11 @@
 <div id="divLogin">
 <form Method="Post" action="../control/controler.php?fn=login">
 <table>
-<tr><td width=30%>用户名</td><td colspan="2"><input type="text" name="username" class="inputText" /></td></tr>
+<tr><td width=30%>用户名</td><td colspan="2"><input type="text" name="username" class="inputText" value="<?php echo getCookieValue('username');?>"/></td></tr>
 <tr><td>密码</td><td colspan="2"><input type="password" name="password" class="inputText" /></td></tr>
-<tr><td>验证码</td><td width="35%"><input type="text" name ="checkNum" class="inputText" size="6"/></td><td><img src="../model/checkNum.php" /></td></tr>
+<tr><td>验证码</td><td width="35%"><input type="text" name ="checkNum" class="inputText" size="6"/></td>
+<td><img src="../model/checkNum.php" onclick="this.src='../model/checkNum.php?aa='+Math.random()"/></td></tr>
+<tr><td>保存用户名</td><td><input type="checkbox" name="checked" value="yes" checked></td></tr>
 <tr><td colspan="3" align="center"><input type="submit" value="登陆" class="inputButton" />
 <input type="reset" value="重填" class="inputButton" /></td><tr>
 </table>
@@ -22,3 +24,13 @@
 </div>
 </body>
 </html>
+<?php 
+function getCookieValue($key) {
+	if (empty($_COOKIE[$key])) {
+		return "";
+	}
+	else {
+		return $_COOKIE[$key];
+	}
+}
+?>

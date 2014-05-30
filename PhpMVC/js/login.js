@@ -1,3 +1,6 @@
+/**
+ * 使用JQuery，显示错误信息
+ */
 function errMessage() {
 	var queryString = window.top.location.search.substring(1); 
 
@@ -17,6 +20,12 @@ function errMessage() {
 	}
 } 
 
+/**
+ * 从URL的GET方式传递的查询串中取某个值
+ * @param queryString		查询串(url中?之后的部分，不含问号)
+ * @param parameterName		要查询的名称
+ * @returns					查询到的值
+ */
 function getParameter(queryString, parameterName) {  
 	// Add "=" to the parameter name (i.e. parameterName=value)  
 	var parameterName = parameterName + "=";  
