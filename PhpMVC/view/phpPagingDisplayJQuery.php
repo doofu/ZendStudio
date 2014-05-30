@@ -9,7 +9,7 @@ $nametableManage = new NametableManage();
 $totalRows = $nametableManage->getTotalRows();
 session_start();
 if (empty($_SESSION['username'])) {
-	header("Location: ../view/login.php");
+	header("Location: ../view/login.html");
 	exit();
 }
 

@@ -76,13 +76,13 @@ function fnLogin() {
 	session_start();
 	// 判断验证码是否相等
 	if ($_POST['checkNum'] != $_SESSION['checkNum']) {
-		header("Location: ../view/login.php?err=1");
+		header("Location: ../view/login.html?err=1");
 		exit();
 	}
 	
 	// 判断用户名是否为空
 	if (empty($_POST['username'])) {
-		header("Location: ../view/login.php?err=2");
+		header("Location: ../view/login.html?err=2");
 		exit();
 	}
 	
@@ -91,23 +91,25 @@ function fnLogin() {
 	$rec = $nametableManage->queryByName($_POST['username']);
 	
 	if (empty($rec)) {
-		header("Location: ../view/login.php?err=3");
+		header("Location: ../view/login.html?err=3");
 		exit();
 	}
 
 	if ($rec[0]['password'] != $_POST['password']) {
-		header("Location: ../view/login.php?err=4");
+		header("Location: ../view/login.html?err=4");
 		exit();
 	}
 	
-	// 判断是否选中保存用户名。如果选中，则在cookie中保存用户名，否则删除原来保存的用户名
+	// 判断是否选中保存用户名，并将是否选中状态保存到cookie中。如果选中，则在cookie中保存用户名，否则删除原来保存的用户名
 	if (empty($_POST['checked'])) {
 		if (!empty($_COOKIE['username'])) {
-			setcookie('username', 'd', time() - 100, '/');	// 删除cookie中的username
+			setcookie('username', '', time() - 100, '/');	// 删除cookie中的username
 		}
+		setcookie('checked', '', time() - 100, '/');
 	} else {
 		// 保存复选框被选中
 		setcookie('username', $_POST['username'], time() + 3600 * 24 * 30, '/');	// 保存一个月
+		setcookie('checked', 'checked', time() + 3600 * 24 * 30, '/');
 	}
 
 	// 保存用户名到session中
@@ -123,7 +125,7 @@ function fnLogout() {
 	session_start();
 	session_destroy();
 	
-	header("Location: ../view/login.php");
+	header("Location: ../view/login.html");
 	exit();
 }
 
