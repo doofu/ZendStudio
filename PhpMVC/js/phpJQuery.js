@@ -38,9 +38,10 @@ function getUserByGet() {
 function getUserByPost() {
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=getUser", // 发送请求地址
+		url : "../control/controler.php", // 发送请求地址
 		dataType : "xml", // 返回数据为xml格式
 		data : { // 发送给数据库的数据
+			fn : "getUser",
 			username : $("#username2").val()
 		},
 		// 请求成功后的回调函数
@@ -79,8 +80,9 @@ function convertURL(url) {
 function addUserByPost() {
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=addUser", // 发送请求地址
+		url : "../control/controler.php", // 发送请求地址
 		data : { // 发送给数据库的数据
+			fn : "addUser",
 			username : $("#username").val(),
 			age : $("#age").val(),
 			salary : $("#salary").val(),
@@ -98,8 +100,9 @@ function addUserByPost() {
 function deleteUserByPost() {
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=deleteUser", // 发送请求地址
+		url : "../control/controler.php", // 发送请求地址
 		data : { // 发送给数据库的数据
+			fn : "deleteUser",
 			username : $("#username2").val()
 		},
 		// 请求成功后的回调函数有两个参数
@@ -112,8 +115,9 @@ function deleteUserByPost() {
 function modifyUserByPost() {
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=modifyUser", // 发送请求地址
+		url : "../control/controler.php", // 发送请求地址
 		data : { // 发送给数据库的数据
+			fn : "modifyUser",
 			username : $("#username2").val(),
 			age : $("#age2").val(),
 			salary : $("#salary2").val(),

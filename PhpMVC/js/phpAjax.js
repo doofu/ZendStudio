@@ -73,8 +73,8 @@ function getPhoneNumberByPost() {
 		// 第一个参数表示请求的方式, "get" / "post"
 		// 第二个参数指定url,对哪个页面发出ajax请求(本质仍然是http请求)
 		// 第三个参数表示 true表示使用异步机制,如果false表示不使用异步
-		var url = "../control/controler.php?fn=getPhonenumber";
-		var queryString = "mytime=" + new Date() + "&username="
+		var url = "../control/controler.php";
+		var queryString = "fn=getPhonenumber&mytime=" + new Date() + "&username="
 				+ $("username2").value;
 
 		// 打开请求.

@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class=div1>
-<form name="MVC" Method="Post" action="../control/controler.php?fn=phpMySqlUseSmarty">
+<form name="MVC" Method="Post" action="../control/controler.php">
 <H2>MVC PHP Smarty范例程序<br/>
 目录：view、control、model、smarty,templates,templates_c<br/>
 文件：[V]phpMySqlUseSmarty.tpl、[C]controler.php、[M]NametableManage.class.php、[M]PdoHelper.class.php</H2><br>
@@ -20,6 +20,7 @@
 电话号码：<input type="text" name="phonenumber" id="phonenumber" value={$phonenumber}><br> 
 电子邮件：<input type="text" name="email" id="email" value={$email}><br>
 用户密码：<input type="password" name="password" id="password" value={$password}><br><br>
+<input type="hidden" name="fn" value="phpMySqlUseSmarty">
 <input type="submit" value="查询" class=button>
 <input type="reset" value="清除" class=button><br>
 <br><br>

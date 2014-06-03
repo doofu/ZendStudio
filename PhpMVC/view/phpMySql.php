@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class=div1>
-	<form name="MVC" Method="Post" action="../control/controler.php?fn=phpMySql">
+	<form name="MVC" Method="Post" action="../control/controler.php">
 		<H2>MVC PHP范例程序（返回数据通过Get方式传递）<br>
 		目录：view control model<br/>
 		文件：[V]phpMySql.php、[C]controler.php、[M]PdoHelper.class.php<br/><br/></H2>
@@ -28,6 +28,7 @@
 		电子邮件：<input	type="text" name="email" id="email" value=<?php if (!empty($_GET["res"])) echo $_GET['email'] ?>><br>
 		用户密码：<input type="password" name="password" id="password" value=<?php if (!empty($_GET["res"])) echo $_GET['password'] ?>><br><br>
 		<!-- input type="button" onclick="addUserByPost();" value="增加" class=button>  -->
+		<input type="hidden" name="fn" value="phpMySql">
 		<input type="submit" value="查询" class=button>
 		<input type="reset" value="清除" class=button><br>
 		<br><br>

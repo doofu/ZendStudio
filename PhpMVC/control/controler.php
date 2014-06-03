@@ -3,8 +3,8 @@ require_once '../model/NametableManage.class.php';
 require_once '../model/PagingToolbar.class.php';
 require_once '../smarty/libs/Smarty.class.php';
 
-if (!empty($_GET['fn'])) {
-	$fn = $_GET['fn'];
+if (!empty($_REQUEST['fn'])) {
+	$fn = $_REQUEST['fn'];
 	try {
 		$nametableManage = new NametableManage();
 

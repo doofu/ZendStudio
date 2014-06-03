@@ -7,9 +7,10 @@ function getPagingData(pageNow, listRows, totalRows) {
 	// 显示表格数据
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=getPagingData", // 发送请求地址
+		url : "../control/controler.php", // 发送请求地址
 		dataType : "xml", // 返回数据为xml格式
 		data : { // 发送给数据库的数据
+			fn : "getPagingData",
 			pageNow : pageNow,
 			listRows: listRows
 		},
@@ -57,9 +58,10 @@ function getPagingData(pageNow, listRows, totalRows) {
 function showPagingToolbar(pageNow, listRows, totalRows){  
 	$.ajax({
 		type : "post", // 请求方式
-		url : "../control/controler.php?fn=getPagingToolBar", // 发送请求地址
+		url : "../control/controler.php", // 发送请求地址
 		dataType : "html", // 返回数据为html格式
 		data : { // 发送给数据库的数据
+			fn : "getPagingToolBar",
 			totalRows: totalRows,
 			pageNow : pageNow,
 			listRows: listRows
