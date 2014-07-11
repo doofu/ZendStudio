@@ -21,16 +21,16 @@ class NametableManage {
 	}
 	
 	public function getTotalRows() {
-		return $this->pdoHelper->getTotalRows('nametable');
+		return $this->pdoHelper->getTotalRows('Nametable');
 	}
 	
 	public function getPagingData($pageNow, $rows) {
-		return $this->pdoHelper->getPagingData('nametable', ($pageNow - 1) * $rows, $rows);
+		return $this->pdoHelper->getPagingData('Nametable', ($pageNow - 1) * $rows, $rows);
 	}
 	
 	public function queryByName($name) {
 		try {
-			return $this->pdoHelper->queryByKey('nametable', 'name', $name);
+			return $this->pdoHelper->queryByKey('Nametable', 'name', $name);
 		} catch (Exception $e) {
 			throw $e;
 		}
@@ -38,7 +38,7 @@ class NametableManage {
 	
 	public function addRecord($rec) {
 		try {
-			$ret = $this->pdoHelper->addRecord("nametable", $rec);
+			$ret = $this->pdoHelper->addRecord("Nametable", $rec);
 			
 			echo ($ret > 0) ? $rec['name'].'增加成功！' : $rec['name'].'增加失败!';
 		} catch (Exception $e) {
@@ -48,7 +48,7 @@ class NametableManage {
 	
 	public function deleteByName($name) {
 		try {
-			$ret = $this->pdoHelper->deleteByKey('nametable', 'name', $name);
+			$ret = $this->pdoHelper->deleteByKey('Nametable', 'name', $name);
 			echo ($ret > 0) ? $name.'删除成功！' : $name.'删除失败!';
 		} catch (Exception $e) {
 			echo $name.'删除失败！！';
@@ -57,7 +57,7 @@ class NametableManage {
 	
 	public function modifyRecord($keyName, $keyValue, $rec) {
 		try {
-			$ret = $this->pdoHelper->modifyRecord("nametable", $keyName, $keyValue, $rec);
+			$ret = $this->pdoHelper->modifyRecord("Nametable", $keyName, $keyValue, $rec);
 			
 			echo $keyValue.'修改成功！';
 		} catch (Exception $e) {

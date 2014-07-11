@@ -16,12 +16,17 @@ try {
 	/* 增删改 */
 	$pdoHelper->beginTransaction();
 	
-	/* for ($i = 0; $i < 100; $i++) {
-	$sql="INSERT INTO nametable (name, age, salary, phonenumber, email, password) VALUES ('add$i', $i, ".(5678.91+$i).", '13300056789', 'new@163.com', '123345')";
+	/**/
+	 for ($i = 0; $i < 100; $i++) {
+	$sql="INSERT INTO Nametable (name, age, salary, phonenumber, email, password) VALUES ('add$i', $i, ".(5678.91+$i).", '13300056789', 'new@163.com', '123345')";
 	
 	//$sql='delete from nametable where name="newqwe"';
 	$b = $pdoHelper->execDml($sql);
-	} */
+	} 
+	$pdoHelper->commit();
+	exit;
+	/**/
+	
 	
 	$sql="INSERT INTO nametable (name, age, salary, phonenumber, email, password) VALUES ('add', 20, 5678.88, '13300056789', 'add@163.com', '123345')";
 	//$sql='delete from nametable where name="newqwe"';

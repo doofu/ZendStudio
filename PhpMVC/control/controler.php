@@ -1,7 +1,7 @@
 <?php
 require_once '../model/NametableManage.class.php';
 require_once '../model/PagingToolbar.class.php';
-require_once '../smarty/libs/Smarty.class.php';
+require_once '../Smarty/libs/Smarty.class.php';
 
 if (!empty($_REQUEST['fn'])) {
 	$fn = $_REQUEST['fn'];
