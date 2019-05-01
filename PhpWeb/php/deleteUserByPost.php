@@ -1,16 +1,15 @@
-<?php
+﻿<?php
 // 以POST方式取上送数据
 $name = $_POST["username"];
 
 // 连接数据库
-$con = mysql_connect("localhost","root","root");
+$con = mysqli_connect("localhost","root","root","test");
 if (!$con) {
 	die('Could not connect: ' . mysql_error());
 }
-mysql_select_db("test", $con);
 
 $sql="delete from nametable where name='$name'";
-if (!mysql_query($sql, $con)) {
+if (!mysqli_query($con, $sql)) {
 	echo $name." 删除失败！";
 }
 else {
@@ -18,4 +17,4 @@ else {
 }
 
 // 释放连接资源
-mysql_close($con);
+mysqli_close($con);

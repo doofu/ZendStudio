@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // 以POST方式取上送数据
 $name = $_POST["username"];
 $age = $_POST["age"];
@@ -8,15 +8,14 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 
 // 连接数据库
-$con = mysql_connect("localhost","root","root");
+$con = mysqli_connect("localhost","root","root","test");
 if (!$con) {
 	die('Could not connect: ' . mysql_error());
 }
-mysql_select_db("test", $con);
 
-$sql="INSERT INTO nametable (name, age, salary, phonenumber, email, password) VALUES ('$name', '$age', '$salary', '$phonenumber', '$email', '$password')";
+$sql='INSERT INTO nametable (name, age, salary, phonenumber, email, password) VALUES ("'.$name.'", "'.$age.'", "'.$salary.'", "'.$phonenumber.'", "'.$email.'", "'.$password.'")';
 
-if (!mysql_query($sql,$con))
+if (!mysqli_query($con,$sql))
 {
 	echo $name." 增加失败！";
 }
@@ -25,4 +24,4 @@ else {
 }
 
 // 释放连接资源
-mysql_close($con);
+mysqli_close($con);
